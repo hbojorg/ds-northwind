@@ -1,0 +1,32 @@
+﻿CREATE TABLE [dbo].[Products]
+(
+    [ProductID]       [int] IDENTITY(1,1) NOT NULL CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED,
+    [ProductName]     [nvarchar](40)      NOT NULL,
+    [SupplierID]      [int]               NULL,
+    [CategoryID]      [int]               NULL,
+    [QuantityPerUnit] [nvarchar](20)      NULL,
+    [UnitPrice]       [money]             NULL CONSTRAINT [DF_Products_UnitPrice]    DEFAULT ((0)),
+    [UnitsInStock]    [smallint]          NULL CONSTRAINT [DF_Products_UnitsInStock] DEFAULT ((0)),
+    [UnitsOnOrder]    [smallint]          NULL CONSTRAINT [DF_Products_UnitsOnOrder] DEFAULT ((0)),
+    [ReorderLevel]    [smallint]          NULL CONSTRAINT [DF_Products_ReorderLevel] DEFAULT ((0)),
+    [Discontinued]    [bit]               NOT NULL CONSTRAINT [DF_Products_Discontinued] DEFAULT ((0)),
+    [rowversion]      [timestamp]         NULL,
+    CONSTRAINT [FK_Products_Categories] FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[Categories] ([CategoryID]),
+    CONSTRAINT [FK_Products_Suppliers]  FOREIGN KEY ([SupplierID]) REFERENCES [dbo].[Suppliers]  ([SupplierID]),
+    CONSTRAINT [CK_Products_UnitPrice]  CHECK ([UnitPrice] >= (0)),
+    CONSTRAINT [CK_ReorderLevel]        CHECK ([ReorderLevel] >= (0)),
+    CONSTRAINT [CK_UnitsInStock]        CHECK ([UnitsInStock] >= (0)),
+    CONSTRAINT [CK_UnitsOnOrder]        CHECK ([UnitsOnOrder] >= (0))
+);
+GO
+
+CREATE NONCLUSTERED INDEX [CategoriesProducts] ON [dbo].[Products] ([CategoryID] ASC);
+GO
+CREATE NONCLUSTERED INDEX [CategoryID]         ON [dbo].[Products] ([CategoryID] ASC);
+GO
+CREATE NONCLUSTERED INDEX [ProductName]        ON [dbo].[Products] ([ProductName] ASC);
+GO
+CREATE NONCLUSTERED INDEX [SupplierID]         ON [dbo].[Products] ([SupplierID] ASC);
+GO
+CREATE NONCLUSTERED INDEX [SuppliersProducts]  ON [dbo].[Products] ([SupplierID] ASC);
+GO

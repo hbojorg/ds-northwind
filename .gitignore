@@ -1,0 +1,30 @@
+# Visual Studio / SSDT
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.dbmdl
+*.jfm
+*.dacpac
+*.publish.xml
+!*.template.publish.xml
+
+# SSIS / SSAS (proyecto de referencia)
+*.dtproj.user
+*.database.user
+*.smproj.user
+*.layout
+*.abf
+
+# Temporales
+*.tmp
+*.log
+~$*
+
+# Material local, no se versiona 
+docs/
+reference/
+
+# Herramienta local
+tools/Export-NorthWindData.ps1
