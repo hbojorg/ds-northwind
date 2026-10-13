@@ -11,12 +11,12 @@ CREATE TABLE [dbo].[DimDate]
     [FullDate]            [date]         NOT NULL,
     [DayNumberOfWeek]     [tinyint]      NOT NULL,   -- ISO: 1 = lunes ... 7 = domingo
     [DayNameOfWeek]       [nvarchar](10) NOT NULL,
-    [DayNameOfWeekES]     [nvarchar](10) NOT NULL,
+    [DayNameOfWeekES]     [nvarchar](12) NOT NULL,
     [DayNumberOfMonth]    [tinyint]      NOT NULL,
     [DayNumberOfYear]     [smallint]     NOT NULL,
     [WeekNumberOfYear]    [tinyint]      NOT NULL,   -- semana ISO 8601
     [MonthName]           [nvarchar](10) NOT NULL,
-    [MonthNameES]         [nvarchar](10) NOT NULL,
+    [MonthNameES]         [nvarchar](12) NOT NULL,
     [MonthNumberOfYear]   [tinyint]      NOT NULL,
     [YearMonth]           [int]          NOT NULL,   -- AAAAMM (para ordenar)
     [YearMonthName]       [nvarchar](8)  NOT NULL,   -- '1997-07'
